@@ -1,0 +1,319 @@
+========================================
+Demo showcasing the data import into SQL
+========================================
+
+***=> \i import_data.txt
+============================================
+PART A - Load in schema and data
+============================================
+psql:schema.ddl:2: NOTICE:  drop cascades to 6 other objects
+DETAIL:  drop cascades to table canadianelections.candidate
+drop cascades to table canadianelections.election
+drop cascades to table canadianelections.contributor
+drop cascades to table canadianelections.electionresult
+drop cascades to table canadianelections.partycontribution
+drop cascades to table canadianelections.candidatecontribution
+DROP SCHEMA
+CREATE SCHEMA
+SET
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+COPY 7115
+COPY 5574
+COPY 5
+COPY 8755
+COPY 2478
+COPY 2943
+============================================
+PART B - Table definitions
+============================================
+
+           Table "canadianelections.candidate"
+    Column     |  Type   | Collation | Nullable | Default
+---------------+---------+-----------+----------+---------
+ cid           | integer |           | not null |
+ party         | text    |           | not null |
+ candidatename | text    |           | not null |
+ riding        | text    |           | not null |
+Indexes:
+    "candidate_pkey" PRIMARY KEY, btree (cid)
+Referenced by:
+    TABLE "candidatecontribution" CONSTRAINT "candidatecontribution_cid_fkey" FOREIGN KEY (cid) REFERENCES candidate(cid)
+    TABLE "electionresult" CONSTRAINT "electionresult_cid_fkey" FOREIGN KEY (cid) REFERENCES candidate(cid)
+
+           Table "canadianelections.candidate"
+    Column     |  Type   | Collation | Nullable | Default
+---------------+---------+-----------+----------+---------
+ cid           | integer |           | not null |
+ party         | text    |           | not null |
+ candidatename | text    |           | not null |
+ riding        | text    |           | not null |
+Indexes:
+    "candidate_pkey" PRIMARY KEY, btree (cid)
+Referenced by:
+    TABLE "candidatecontribution" CONSTRAINT "candidatecontribution_cid_fkey" FOREIGN KEY (cid) REFERENCES candidate(cid)
+    TABLE "electionresult" CONSTRAINT "electionresult_cid_fkey" FOREIGN KEY (cid) REFERENCES candidate(cid)
+
+
+                     Table "canadianelections.election"
+    Column    |            Type             | Collation | Nullable | Default
+--------------+-----------------------------+-----------+----------+---------
+ eid          | integer                     |           | not null |
+ electiondate | timestamp without time zone |           | not null |
+Indexes:
+    "election_pkey" PRIMARY KEY, btree (eid)
+Referenced by:
+    TABLE "electionresult" CONSTRAINT "electionresult_eid_fkey" FOREIGN KEY (eid) REFERENCES election(eid)
+
+                     Table "canadianelections.election"
+    Column    |            Type             | Collation | Nullable | Default
+--------------+-----------------------------+-----------+----------+---------
+ eid          | integer                     |           | not null |
+ electiondate | timestamp without time zone |           | not null |
+Indexes:
+    "election_pkey" PRIMARY KEY, btree (eid)
+Referenced by:
+    TABLE "electionresult" CONSTRAINT "electionresult_eid_fkey" FOREIGN KEY (eid) REFERENCES election(eid)
+
+
+           Table "canadianelections.contributor"
+     Column      |  Type   | Collation | Nullable | Default
+-----------------+---------+-----------+----------+---------
+ conid           | integer |           | not null |
+ contributorname | text    |           | not null |
+ province        | text    |           | not null |
+ postalcode      | text    |           | not null |
+Indexes:
+    "contributor_pkey" PRIMARY KEY, btree (conid)
+Referenced by:
+    TABLE "candidatecontribution" CONSTRAINT "candidatecontribution_conid_fkey" FOREIGN KEY (conid) REFERENCES contributor(conid)
+    TABLE "partycontribution" CONSTRAINT "partycontribution_conid_fkey" FOREIGN KEY (conid) REFERENCES contributor(conid)
+
+           Table "canadianelections.contributor"
+     Column      |  Type   | Collation | Nullable | Default
+-----------------+---------+-----------+----------+---------
+ conid           | integer |           | not null |
+ contributorname | text    |           | not null |
+ province        | text    |           | not null |
+ postalcode      | text    |           | not null |
+Indexes:
+    "contributor_pkey" PRIMARY KEY, btree (conid)
+Referenced by:
+    TABLE "candidatecontribution" CONSTRAINT "candidatecontribution_conid_fkey" FOREIGN KEY (conid) REFERENCES contributor(conid)
+    TABLE "partycontribution" CONSTRAINT "partycontribution_conid_fkey" FOREIGN KEY (conid) REFERENCES contributor(conid)
+
+
+       Table "canadianelections.electionresult"
+  Column   |  Type   | Collation | Nullable | Default
+-----------+---------+-----------+----------+---------
+ cid       | integer |           | not null |
+ eid       | integer |           | not null |
+ votes     | integer |           | not null |
+ incumbent | boolean |           | not null |
+ leader    | boolean |           | not null |
+Indexes:
+    "electionresult_pkey" PRIMARY KEY, btree (cid, eid)
+Foreign-key constraints:
+    "electionresult_cid_fkey" FOREIGN KEY (cid) REFERENCES candidate(cid)
+    "electionresult_eid_fkey" FOREIGN KEY (eid) REFERENCES election(eid)
+
+       Table "canadianelections.electionresult"
+  Column   |  Type   | Collation | Nullable | Default
+-----------+---------+-----------+----------+---------
+ cid       | integer |           | not null |
+ eid       | integer |           | not null |
+ votes     | integer |           | not null |
+ incumbent | boolean |           | not null |
+ leader    | boolean |           | not null |
+Indexes:
+    "electionresult_pkey" PRIMARY KEY, btree (cid, eid)
+Foreign-key constraints:
+    "electionresult_cid_fkey" FOREIGN KEY (cid) REFERENCES candidate(cid)
+    "electionresult_eid_fkey" FOREIGN KEY (eid) REFERENCES election(eid)
+
+
+                   Table "canadianelections.partycontribution"
+      Column      |            Type             | Collation | Nullable | Default
+------------------+-----------------------------+-----------+----------+---------
+ pcid             | integer                     |           | not null |
+ conid            | integer                     |           |          |
+ party            | text                        |           | not null |
+ contributiondate | timestamp without time zone |           | not null |
+ amount           | double precision            |           | not null |
+Indexes:
+    "partycontribution_pkey" PRIMARY KEY, btree (pcid)
+Foreign-key constraints:
+    "partycontribution_conid_fkey" FOREIGN KEY (conid) REFERENCES contributor(conid)
+
+                   Table "canadianelections.partycontribution"
+      Column      |            Type             | Collation | Nullable | Default
+------------------+-----------------------------+-----------+----------+---------
+ pcid             | integer                     |           | not null |
+ conid            | integer                     |           |          |
+ party            | text                        |           | not null |
+ contributiondate | timestamp without time zone |           | not null |
+ amount           | double precision            |           | not null |
+Indexes:
+    "partycontribution_pkey" PRIMARY KEY, btree (pcid)
+Foreign-key constraints:
+    "partycontribution_conid_fkey" FOREIGN KEY (conid) REFERENCES contributor(conid)
+
+
+                 Table "canadianelections.candidatecontribution"
+      Column      |            Type             | Collation | Nullable | Default
+------------------+-----------------------------+-----------+----------+---------
+ ccid             | integer                     |           | not null |
+ conid            | integer                     |           |          |
+ cid              | integer                     |           |          |
+ contributiondate | timestamp without time zone |           | not null |
+ amount           | double precision            |           | not null |
+Indexes:
+    "candidatecontribution_pkey" PRIMARY KEY, btree (ccid)
+Foreign-key constraints:
+    "candidatecontribution_cid_fkey" FOREIGN KEY (cid) REFERENCES candidate(cid)
+    "candidatecontribution_conid_fkey" FOREIGN KEY (conid) REFERENCES contributor(conid)
+
+                 Table "canadianelections.candidatecontribution"
+      Column      |            Type             | Collation | Nullable | Default
+------------------+-----------------------------+-----------+----------+---------
+ ccid             | integer                     |           | not null |
+ conid            | integer                     |           |          |
+ cid              | integer                     |           |          |
+ contributiondate | timestamp without time zone |           | not null |
+ amount           | double precision            |           | not null |
+Indexes:
+    "candidatecontribution_pkey" PRIMARY KEY, btree (ccid)
+Foreign-key constraints:
+    "candidatecontribution_cid_fkey" FOREIGN KEY (cid) REFERENCES candidate(cid)
+    "candidatecontribution_conid_fkey" FOREIGN KEY (conid) REFERENCES contributor(conid)
+
+============================================
+PART C - Row amounts for each table
+============================================
+SELECT count(*) FROM Candidate;
+ count
+-------
+  7115
+(1 row)
+
+SELECT count(*) FROM Election;
+ count
+-------
+     5
+(1 row)
+
+SELECT count(*) FROM Contributor;
+ count
+-------
+  5574
+(1 row)
+
+SELECT count(*) FROM ElectionResult;
+ count
+-------
+  8755
+(1 row)
+
+SELECT count(*) FROM PartyContribution;
+ count
+-------
+  2943
+(1 row)
+
+SELECT count(*) FROM CandidateContribution;
+ count
+-------
+  2478
+(1 row)
+
+============================================
+PART D - Sample data from each table
+============================================
+SELECT * FROM Candidate LIMIT 10;
+ cid |          party           |    candidatename     |              riding
+-----+--------------------------+----------------------+----------------------------------
+   0 | People's Party           | Karin Litzcke        | Vancouver East
+   1 | Marxist-Leninist         | Christine Dandenault | Hochelaga
+   2 | Bloc Qu�b�cois           | Charles Lariv�e      | Westmount--Ville-Marie
+   3 | Independent              | John Cannis          | Scarborough Centre
+   4 | Green Party              | Dominique Breau      | Acadie--Bathurst
+   5 | Conservative             | Garth Turner         | Halton
+   6 | People's Party           | David Patterson      | Barrie--Springwater--Oro-Medonte
+   7 | Libertarian              | Robert McFadzean     | Lakeland
+   8 | NDP-New Democratic Party | Ed Chudak            | Newmarket--Aurora
+   9 | People's Party           | Isaac Hayes          | Saskatoon West
+(10 rows)
+
+SELECT * FROM Election LIMIT 10;
+ eid |    electiondate
+-----+---------------------
+  43 | 2019-10-21 00:00:00
+  42 | 2015-10-19 00:00:00
+  41 | 2011-05-02 00:00:00
+  40 | 2008-10-14 00:00:00
+  39 | 2006-01-23 00:00:00
+(5 rows)
+
+SELECT * FROM Contributor LIMIT 10;
+ conid |  contributorname  | province | postalcode
+-------+-------------------+----------+------------
+     0 | Elizabeth Ambrose | MB       | R2W0A6
+     1 | Patricia Axen     | BC       | V8R2X9
+     2 | Judy Randall      | ON       | K2B6N1
+     3 | Andre Joly        | QC       | J5Y4J2
+     4 | Aline Lamere      | ON       | K7R1T8
+     5 | Alexander Cullen  | ON       | K2B6J8
+     6 | Susan Barclay     | ON       | P8T1J8
+     7 | Blair Colquhoun   | ON       | K2S1G9
+     8 | Ronda Green       | ON       | M3H1J9
+     9 | Tim Barber        | ON       | K1K4T8
+(10 rows)
+
+SELECT * FROM ElectionResult LIMIT 10;
+ cid  | eid | votes | incumbent | leader
+------+-----+-------+-----------+--------
+ 6257 |  39 |   199 | f         | f
+   95 |  39 |  2010 | f         | f
+ 6642 |  39 | 13805 | t         | f
+ 3243 |  39 |  5554 | f         | f
+ 5892 |  39 |  6940 | f         | f
+ 6955 |  39 |  8655 | f         | f
+ 5002 |  39 |  1292 | f         | f
+ 4226 |  39 |  7939 | f         | f
+ 3955 |  39 |   307 | f         | f
+  600 |  39 | 17753 | t         | f
+(10 rows)
+
+SELECT * FROM PartyContribution LIMIT 10;
+ pcid | conid |          party          |  contributiondate   | amount
+------+-------+-------------------------+---------------------+--------
+ 1000 |     0 | New Democratic Party    | 2012-12-31 00:00:00 |    200
+ 1001 |     1 | New Democratic Party    | 2012-12-31 00:00:00 |     25
+ 1002 |     2 | New Democratic Party    | 2011-12-31 00:00:00 |    250
+ 1003 |     3 | Liberal Party of Canada | 2013-12-31 00:00:00 |     20
+ 1004 |     4 | Liberal Party of Canada | 2013-12-31 00:00:00 |     20
+ 1005 |     5 | New Democratic Party    | 2011-12-31 00:00:00 |    200
+ 1006 |     6 | New Democratic Party    | 2012-12-31 00:00:00 |    226
+ 1007 |     7 | Liberal Party of Canada | 2007-12-31 00:00:00 |   8.87
+ 1008 |     8 | Liberal Party of Canada | 2007-12-31 00:00:00 |   1000
+ 1009 |     9 | Liberal Party of Canada | 2007-12-31 00:00:00 |    750
+(10 rows)
+
+SELECT * FROM CandidateContribution LIMIT 10;
+ ccid | conid | cid  |  contributiondate   | amount
+------+-------+------+---------------------+--------
+ 2000 |  2947 | 2796 | 2004-06-28 00:00:00 |    250
+ 2001 |  2948 | 7035 | 2004-06-28 00:00:00 |    400
+ 2002 |  2949 |  152 | 2006-01-23 00:00:00 |    400
+ 2003 |  2950 |  152 | 2006-01-23 00:00:00 |    500
+ 2004 |  2951 | 4141 | 2006-01-23 00:00:00 |   1000
+ 2005 |  2952 | 1884 | 2006-01-23 00:00:00 |    250
+ 2006 |  2953 | 1783 | 2006-01-23 00:00:00 |    750
+ 2007 |  2956 | 4567 | 2004-06-28 00:00:00 |    400
+ 2008 |  2957 | 4918 | 2004-06-28 00:00:00 |    500
+ 2009 |  2959 |  251 | 2004-06-28 00:00:00 |    400
+(10 rows)
