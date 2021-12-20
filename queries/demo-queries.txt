@@ -1,0 +1,322 @@
+***=> \i queries_runner.txt
+-------------------- Loading schema and data: --------------------
+
+psql:schema.ddl:2: NOTICE:  drop cascades to 34 other objects
+DETAIL:  drop cascades to table canadianelections.candidate
+drop cascades to table canadianelections.election
+drop cascades to table canadianelections.contributor
+drop cascades to table canadianelections.electionresult
+drop cascades to table canadianelections.partycontribution
+drop cascades to table canadianelections.candidatecontribution
+drop cascades to view canadianelections.incumbent
+drop cascades to view canadianelections.electionincumbent
+drop cascades to view canadianelections.q1_query_1
+drop cascades to view canadianelections.winningvotes
+drop cascades to view canadianelections.winners
+drop cascades to view canadianelections.candidatecontributiontoelection
+drop cascades to view canadianelections.partycontributiontoelection
+drop cascades to view canadianelections.totalcandidatecontributions
+drop cascades to view canadianelections.avgcandidatecontributions
+drop cascades to view canadianelections.winnercontributions
+drop cascades to view canadianelections.winnerdatacount
+drop cascades to view canadianelections.numwinnersaboveavgcontributions
+drop cascades to view canadianelections.q2_query_1
+drop cascades to view canadianelections.maxcandidatecontributions
+drop cascades to view canadianelections.maxwinners
+drop cascades to view canadianelections.q2_query_2
+drop cascades to table canadianelections.q2_query_3
+drop cascades to view canadianelections.totalpartycontributions
+drop cascades to view canadianelections.maxpartycontributions
+drop cascades to view canadianelections.partydatacount
+drop cascades to view canadianelections.leaderridings
+drop cascades to view canadianelections.ridingwinner
+drop cascades to view canadianelections.leaderwinner
+drop cascades to view canadianelections.percentleaderwins
+drop cascades to view canadianelections.q3_query_1
+drop cascades to view canadianelections.leaderloser
+drop cascades to view canadianelections.partyresults
+drop cascades to view canadianelections.q3_query_2
+DROP SCHEMA
+CREATE SCHEMA
+SET
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+COPY 7115
+COPY 5574
+COPY 5
+COPY 8755
+COPY 2478
+COPY 2943
+
+-------------------- Investigative Question 1: ------------------
+
+psql:queries_q1.sql:1: NOTICE:  view "ridingwinner" does not exist, skipping
+DROP VIEW
+psql:queries_q1.sql:2: NOTICE:  view "ridingloser" does not exist, skipping
+DROP VIEW
+psql:queries_q1.sql:3: NOTICE:  view "incumbentloser" does not exist, skipping
+DROP VIEW
+psql:queries_q1.sql:4: NOTICE:  view "incumbent" does not exist, skipping
+DROP VIEW
+psql:queries_q1.sql:5: NOTICE:  view "electionincumbent" does not exist, skipping
+DROP VIEW
+psql:queries_q1.sql:6: NOTICE:  view "electionincumbentloser" does not exist, skipping
+DROP VIEW
+psql:queries_q1.sql:7: NOTICE:  view "percentincumbentlose" does not exist, skipping
+DROP VIEW
+psql:queries_q1.sql:8: NOTICE:  view "partyresult" does not exist, skipping
+DROP VIEW
+CREATE VIEW
+CREATE VIEW
+CREATE VIEW
+CREATE VIEW
+CREATE VIEW
+CREATE VIEW
+psql:queries_q1.sql:55: NOTICE:  view "q1_query_1" does not exist, skipping
+DROP VIEW
+CREATE VIEW
+psql:queries_q1.sql:60: NOTICE:  view "q1_query_2" does not exist, skipping
+DROP VIEW
+CREATE VIEW
+CREATE VIEW
+psql:queries_q1.sql:74: NOTICE:  view "q1_query_3" does not exist, skipping
+DROP VIEW
+CREATE VIEW
+CREATE VIEW
+psql:queries_q1.sql:89: NOTICE:  view "q1_query_4" does not exist, skipping
+DROP VIEW
+CREATE VIEW
+Q1_Query_1
+ eid | count
+-----+-------
+  42 |   247
+  40 |   270
+  43 |   289
+  39 |   278
+  41 |   288
+(5 rows)
+
+Q1_Query_2
+ eid | count
+-----+-------
+  42 |   125
+  40 |    31
+  43 |    49
+  39 |    38
+  41 |    91
+(5 rows)
+
+Q1_Query_3
+ eid | percentlose
+-----+-------------
+  42 |          51
+  40 |          11
+  43 |          17
+  39 |          14
+  41 |          32
+(5 rows)
+
+Q1_Query_4
+ eid |          party           | count
+-----+--------------------------+-------
+  39 | Bloc Qu�b�cois           |    51
+  39 | Conservative             |   124
+  39 | Independent              |     1
+  39 | Liberal                  |   103
+  39 | NDP-New Democratic Party |    29
+  40 | Bloc Qu�b�cois           |    48
+  40 | Conservative             |   143
+  40 | Independent              |     2
+  40 | Liberal                  |    77
+  40 | NDP-New Democratic Party |    37
+  41 | Bloc Qu�b�cois           |     4
+  41 | Conservative             |   166
+  41 | Green Party              |     1
+  41 | Liberal                  |    34
+  41 | NDP-New Democratic Party |   103
+  42 | Bloc Québécois           |    10
+  42 | Conservative             |    99
+  42 | Green Party              |     1
+  42 | Liberal                  |   184
+  42 | NDP-New Democratic Party |    44
+  43 | Bloc Québécois           |    32
+  43 | Conservative             |   121
+  43 | Green Party              |     3
+  43 | Independent              |     1
+  43 | Liberal                  |   157
+  43 | NDP-New Democratic Party |    24
+(26 rows)
+
+
+-------------------- Investigative Question 2: ------------------
+
+psql:queries_q2.sql:5: NOTICE:  view "winningvotes" does not exist, skipping
+DROP VIEW
+CREATE VIEW
+psql:queries_q2.sql:13: NOTICE:  view "winners" does not exist, skipping
+DROP VIEW
+CREATE VIEW
+psql:queries_q2.sql:20: NOTICE:  view "candidatecontributiontoelection" does not exist, skipping
+DROP VIEW
+CREATE VIEW
+psql:queries_q2.sql:34: NOTICE:  view "partycontributiontoelection" does not exist, skipping
+DROP VIEW
+CREATE VIEW
+psql:queries_q2.sql:52: NOTICE:  view "totalcandidatecontributions" does not exist, skipping
+DROP VIEW
+CREATE VIEW
+psql:queries_q2.sql:60: NOTICE:  view "avgcandidatecontributions" does not exist, skipping
+DROP VIEW
+CREATE VIEW
+psql:queries_q2.sql:68: NOTICE:  view "winnercontributions" does not exist, skipping
+DROP VIEW
+CREATE VIEW
+psql:queries_q2.sql:75: NOTICE:  view "winnerdatacount" does not exist, skipping
+DROP VIEW
+CREATE VIEW
+psql:queries_q2.sql:82: NOTICE:  view "numwinnersaboveavgcontributions" does not exist, skipping
+DROP VIEW
+CREATE VIEW
+psql:queries_q2.sql:90: NOTICE:  view "q2_query_1" does not exist, skipping
+DROP VIEW
+CREATE VIEW
+psql:queries_q2.sql:100: NOTICE:  view "maxcandidatecontributions" does not exist, skipping
+DROP VIEW
+CREATE VIEW
+psql:queries_q2.sql:108: NOTICE:  view "maxwinners" does not exist, skipping
+DROP VIEW
+CREATE VIEW
+psql:queries_q2.sql:115: NOTICE:  view "q2_query_2" does not exist, skipping
+DROP VIEW
+CREATE VIEW
+psql:queries_q2.sql:124: NOTICE:  view "partyresults" does not exist, skipping
+DROP VIEW
+CREATE VIEW
+psql:queries_q2.sql:131: NOTICE:  view "partywinningnumbers" does not exist, skipping
+DROP VIEW
+CREATE VIEW
+psql:queries_q2.sql:139: NOTICE:  view "partywinners" does not exist, skipping
+DROP VIEW
+CREATE VIEW
+psql:queries_q2.sql:150: NOTICE:  view "totalpartycontributions" does not exist, skipping
+DROP VIEW
+CREATE VIEW
+psql:queries_q2.sql:157: NOTICE:  view "maxpartycontributions" does not exist, skipping
+DROP VIEW
+CREATE VIEW
+psql:queries_q2.sql:163: NOTICE:  view "partywinnercontributions" does not exist, skipping
+DROP VIEW
+CREATE VIEW
+psql:queries_q2.sql:168: NOTICE:  view "maxpartywinners" does not exist, skipping
+DROP VIEW
+CREATE VIEW
+psql:queries_q2.sql:174: NOTICE:  view "partydatacount" does not exist, skipping
+DROP VIEW
+CREATE VIEW
+psql:queries_q2.sql:180: NOTICE:  view "q2_query_3" does not exist, skipping
+DROP VIEW
+CREATE VIEW
+Q2_Query_1
+ percenthigherthanavgcontributions
+-----------------------------------
+                 0.710843373493976
+(1 row)
+
+Q2_Query_2
+ percentmaxcontributions
+-------------------------
+       0.698795180722892
+(1 row)
+
+Q2_Query_3
+ percentmaxcontributions
+-------------------------
+                       1
+(1 row)
+
+
+-------------------- Investigative Question 3: ------------------
+
+psql:queries_q3.sql:1: NOTICE:  view "leaderridings" does not exist, skipping
+DROP VIEW
+psql:queries_q3.sql:2: NOTICE:  drop cascades to 8 other objects
+DETAIL:  drop cascades to view ridingloser
+drop cascades to view incumbentloser
+drop cascades to view electionincumbentloser
+drop cascades to view q1_query_2
+drop cascades to view percentincumbentlose
+drop cascades to view q1_query_3
+drop cascades to view partyresult
+drop cascades to view q1_query_4
+DROP VIEW
+psql:queries_q3.sql:3: NOTICE:  view "leaderwinner" does not exist, skipping
+DROP VIEW
+psql:queries_q3.sql:4: NOTICE:  view "percentleaderwins" does not exist, skipping
+DROP VIEW
+psql:queries_q3.sql:5: NOTICE:  view "leaderloser" does not exist, skipping
+DROP VIEW
+psql:queries_q3.sql:6: NOTICE:  drop cascades to 5 other objects
+DETAIL:  drop cascades to view partywinningnumbers
+drop cascades to view partywinners
+drop cascades to view partywinnercontributions
+drop cascades to view maxpartywinners
+drop cascades to view q2_query_3
+DROP VIEW
+psql:queries_q3.sql:7: NOTICE:  view "leaderloserparty" does not exist, skipping
+DROP VIEW
+CREATE VIEW
+CREATE VIEW
+CREATE VIEW
+CREATE VIEW
+psql:queries_q3.sql:45: NOTICE:  view "q3_query_1" does not exist, skipping
+DROP VIEW
+CREATE VIEW
+CREATE VIEW
+ eid | cid | candidatename | party | riding
+-----+-----+---------------+-------+--------
+(0 rows)
+
+CREATE VIEW
+psql:queries_q3.sql:66: NOTICE:  view "q3_query_2" does not exist, skipping
+DROP VIEW
+CREATE VIEW
+Q3_Query_1
+ percentwins
+-------------
+         100
+(1 row)
+
+Q3_Query_2
+ eid |          party           | ridingswon
+-----+--------------------------+------------
+  39 | Bloc Qu�b�cois           |         51
+  39 | Conservative             |        124
+  39 | Independent              |          1
+  39 | Liberal                  |        103
+  39 | NDP-New Democratic Party |         29
+  40 | Bloc Qu�b�cois           |         48
+  40 | Conservative             |        143
+  40 | Independent              |          2
+  40 | Liberal                  |         77
+  40 | NDP-New Democratic Party |         37
+  41 | Bloc Qu�b�cois           |          4
+  41 | Conservative             |        166
+  41 | Green Party              |          1
+  41 | Liberal                  |         34
+  41 | NDP-New Democratic Party |        103
+  42 | Bloc Québécois           |         10
+  42 | Conservative             |         99
+  42 | Green Party              |          1
+  42 | Liberal                  |        184
+  42 | NDP-New Democratic Party |         44
+  43 | Bloc Québécois           |         32
+  43 | Conservative             |        121
+  43 | Green Party              |          3
+  43 | Independent              |          1
+  43 | Liberal                  |        157
+  43 | NDP-New Democratic Party |         24
+(26 rows)

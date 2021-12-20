@@ -1,0 +1,39 @@
+\echo -------------------- Loading schema and data: --------------------
+\echo
+\i schema.ddl
+\copy candidate from candidate.csv with csv
+\copy contributor from contributor.csv with csv
+\copy election from election.csv with csv
+\copy electionresult from electionresult.csv with csv
+\copy candidatecontribution from candidatecontribution.csv with csv
+\copy partycontribution from partycontribution.csv with csv
+\echo
+\echo  -------------------- Investigative Question 1: ------------------
+\echo
+\i queries_q1.sql
+\echo Q1_Query_1
+SELECT * FROM Q1_Query_1;
+\echo Q1_Query_2
+SELECT * FROM Q1_Query_2;
+\echo Q1_Query_3
+SELECT * FROM Q1_Query_3;
+\echo Q1_Query_4
+SELECT * FROM Q1_Query_4;
+\echo  
+\echo  -------------------- Investigative Question 2: ------------------
+\echo
+\i queries_q2.sql
+\echo Q2_Query_1
+SELECT * FROM Q2_Query_1;
+\echo Q2_Query_2
+SELECT * FROM Q2_Query_2;
+\echo Q2_Query_3
+SELECT * FROM Q2_Query_3;
+\echo
+\echo  -------------------- Investigative Question 3: ------------------
+\echo
+\i queries_q3.sql
+\echo Q3_Query_1
+SELECT * FROM Q3_Query_1;
+\echo Q3_Query_2
+SELECT * FROM Q3_Query_2;
