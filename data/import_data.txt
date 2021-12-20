@@ -1,0 +1,62 @@
+\echo ============================================
+\echo PART A - Load in schema and data
+\echo ============================================
+
+\i schema.ddl
+\COPY Candidate from candidate.csv with csv
+\COPY Contributor from contributor.csv with csv
+\COPY Election from election.csv with csv
+\COPY ElectionResult from electionresult.csv with csv
+\COPY CandidateContribution from candidatecontribution.csv with csv
+\COPY PartyContribution from partycontribution.csv with csv
+
+\echo ============================================
+\echo PART B - Table definitions
+\echo ============================================
+
+\echo \d Candidate
+\d Candidate
+\echo \d Election
+\d Election
+\echo \d Contributor
+\d Contributor
+\echo \d ElectionResult
+\d ElectionResult
+\echo \d PartyContribution
+\d PartyContribution
+\echo \d CandidateContribution
+\d CandidateContribution
+
+\echo ============================================
+\echo PART C - Row amounts for each table
+\echo ============================================
+
+\echo SELECT count(*) FROM Candidate;
+SELECT count(*) FROM Candidate;
+\echo SELECT count(*) FROM Election;
+SELECT count(*) FROM Election;
+\echo SELECT count(*) FROM Contributor;
+SELECT count(*) FROM Contributor;
+\echo SELECT count(*) FROM ElectionResult;
+SELECT count(*) FROM ElectionResult;
+\echo SELECT count(*) FROM PartyContribution;
+SELECT count(*) FROM PartyContribution;
+\echo SELECT count(*) FROM CandidateContribution;
+SELECT count(*) FROM CandidateContribution;
+
+\echo ============================================
+\echo PART D - Sample data from each table
+\echo ============================================
+
+\echo SELECT * FROM Candidate LIMIT 10;
+SELECT * FROM Candidate LIMIT 10;
+\echo SELECT * FROM Election LIMIT 10;
+SELECT * FROM Election LIMIT 10;
+\echo SELECT * FROM Contributor LIMIT 10;
+SELECT * FROM Contributor LIMIT 10;
+\echo SELECT * FROM ElectionResult LIMIT 10;
+SELECT * FROM ElectionResult LIMIT 10;
+\echo SELECT * FROM PartyContribution LIMIT 10;
+SELECT * FROM PartyContribution LIMIT 10;
+\echo SELECT * FROM CandidateContribution LIMIT 10;
+SELECT * FROM CandidateContribution LIMIT 10;
