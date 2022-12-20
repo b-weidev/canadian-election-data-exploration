@@ -1,4 +1,4 @@
-# CSC343 Final Project - Canadian Election Data Exploration
+# Canadian Election Data Exploration
 ### Brandon Wei, Nicolas Kendler
 Exploring data from recent Canadian elections using SQL queries.
 
